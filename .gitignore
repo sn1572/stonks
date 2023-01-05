@@ -1,2 +1,5 @@
 geckodriver*
 __pycache__/
+pyenv/
+env/
+*.pkl
