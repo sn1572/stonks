@@ -25,8 +25,8 @@ def load_data():
 
 def main():
     data = load_data()
-    intc = data[('Close', 'INTC')]
-    snp = data[('Close', 'SPY')]
+    intc = list(data[('Close', 'INTC')])
+    snp = list(data[('Close', 'SPY')])
     print(f"Intel Beta: {stats.beta(intc, snp)}")
     exp = 0.00
     rfr = 0.0369
