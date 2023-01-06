@@ -6,8 +6,9 @@ def var(v):
     ''' quick n' dirty statistical variance '''
     mu = reduce(lambda x,y: x+y, v)
     mu /= len(v)
+    v[0] = (v[0]-mu)**2
     var = reduce(lambda x,y: x+(y-mu)**2, v)
-    var /= len(v)
+    var /= (len(v) - 1)
     return var
 
 
@@ -17,9 +18,10 @@ def covar(u, v):
     summer = lambda x,y: x+y
     mu_u = reduce(summer, u) / len(u)
     mu_v = reduce(summer, v) / len(v)
-    both = zip(u,v)
-    cov = reduce(lambda x,y: (x[0]+(y[0]-mu_u)*(y[1]-mu_v), 0), both)
-    return cov[0] / len(u)
+    cov = 0
+    for x, y in zip(u,v):
+        cov += (x-mu_u)*(y-mu_v)
+    return cov / (len(u)-1)
 
 
 def beta(stonk, snp):
